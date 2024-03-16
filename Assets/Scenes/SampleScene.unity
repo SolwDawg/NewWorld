@@ -147,6 +147,9 @@ MonoBehaviour:
   moveAmount: 0
   verticalInput: 0
   horizontalInput: 0
+  b_Input: 0
+  x_Input: 0
+  jump_Input: 0
 --- !u!136 &498539871
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -167,7 +170,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
-  m_Height: 1.8
+  m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &498539872
@@ -209,6 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50e3dbb4c169994396d17fecd641346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInteracting: 0
+  isUsingRootMotion: 0
 --- !u!114 &498539876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0300fecf1078df440a2ab7469e0f7f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &498539879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,10 +239,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5833be9d4d08e4090ee0b86bf1da97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRigidbody: {fileID: 0}
+  inAirTimer: 0
+  leapingVelocity: 3
+  fallingVelocity: 33
+  rayCastHeightOffSet: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isSprinting: 0
+  isGrounded: 0
+  isJumping: 0
   walkingSpeed: 1.5
   runningSpeed: 5
   sprintingSpeed: 7
   rotationSpeed: 15
+  jumpHeight: 3
+  gravityIntensity: -15
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
