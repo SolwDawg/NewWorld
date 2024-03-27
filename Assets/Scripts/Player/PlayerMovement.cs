@@ -10,23 +10,22 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     [SerializeField]
-    private float movementForce = 1.0f;
+    private float movementForce = 1f;
     [SerializeField]
-    private float jumpForce = 5.0f;
+    private float jumpForce = 5f;
     [SerializeField]
-    private float maxSpeed = 5.0f;
+    private float maxSpeed = 5f;
     private Vector3 forceDirection = Vector3.zero;
 
     [SerializeField]
     private Camera playerCamera;
     private Animator animator;
 
-
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();
         playerInputSettings = new PlayerInputSettings();
-        animator = GetComponent<Animator>();
+        animator = this.GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -51,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         forceDirection = Vector3.zero;
 
         if (rb.velocity.y < 0f)
-            rb.velocity += Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
+            rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
 
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0;
@@ -64,9 +63,9 @@ public class PlayerMovement : MonoBehaviour
     private void LookAt()
     {
         Vector3 direction = rb.velocity;
-        direction.y = 0;
+        direction.y = 0f;
 
-        if (move.ReadValue<Vector2>().sqrMagnitude > .1f && direction.sqrMagnitude > .1f)
+        if (move.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
             this.rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
         else
             rb.angularVelocity = Vector3.zero;
@@ -86,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         return right.normalized;
     }
 
-    private void DoJump(InputAction.CallbackContext context)
+    private void DoJump(InputAction.CallbackContext obj)
     {
         if (IsGrounded())
         {
@@ -103,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             return false;
     }
 
-    private void DoAttack(InputAction.CallbackContext context)
+    private void DoAttack(InputAction.CallbackContext obj)
     {
         animator.SetTrigger("attack");
     }
